@@ -36,6 +36,7 @@ public class User {
     @JoinColumn(name = "address_id" , referencedColumnName = "id")
     private Adress address;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 }
