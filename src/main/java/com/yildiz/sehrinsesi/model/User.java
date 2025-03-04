@@ -32,9 +32,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id" , referencedColumnName = "id")
-    private Adress address;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Address address;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
