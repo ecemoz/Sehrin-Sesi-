@@ -1,5 +1,6 @@
 package com.yildiz.sehrinsesi.model;
 
+import com.yildiz.sehrinsesi.utils.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,4 +35,7 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id" , referencedColumnName = "id")
     private Adress address;
+
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
 }
