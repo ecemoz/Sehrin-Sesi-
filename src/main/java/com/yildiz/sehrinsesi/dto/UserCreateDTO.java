@@ -14,4 +14,5 @@ public class UserCreateDTO {
     private String password;
     private UserRole userRole;
     private String phoneNumber;
+    private String address;
 }

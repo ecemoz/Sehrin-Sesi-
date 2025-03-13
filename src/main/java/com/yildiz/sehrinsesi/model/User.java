@@ -1,9 +1,10 @@
 package com.yildiz.sehrinsesi.model;
 
+import com.yildiz.sehrinsesi.utils.PhoneNumberUtil;
 import com.yildiz.sehrinsesi.utils.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -32,11 +33,21 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String phoneNumber;
+
+    public void setPhoneNumber(String phoneNumber) {
+        if (!PhoneNumberUtil.isValidPhoneNumber(phoneNumber)) {
+            throw new IllegalArgumentException("Invalid phone number");
+        }
+        this.phoneNumber = phoneNumber;
+    }
+
     @ManyToOne
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private UserRole userRole = UserRole.ROLE_USER;
 }
