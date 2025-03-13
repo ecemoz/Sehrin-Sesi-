@@ -3,26 +3,29 @@ package com.yildiz.sehrinsesi.mapper;
 import com.yildiz.sehrinsesi.dto.*;
 import com.yildiz.sehrinsesi.model.Address;
 import com.yildiz.sehrinsesi.model.User;
+import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Component
 public class UserMapper {
 
-    public static User fromCreateDto(UserCreateDTO dto) {
+    public User fromCreateDto(UserCreateDTO dto) {
         if (dto == null) {
             return null;
         }
 
         User user = new User();
-
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
         user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
-
         user.setPhoneNumber(dto.getPhoneNumber());
-
         user.setUserRole(dto.getUserRole());
 
-
+        // Adres ekleme (street alanı DTO'da tek bir 'address' stringi)
         Address address = new Address();
         address.setStreet(dto.getAddress());
         user.setAddress(address);
@@ -30,7 +33,7 @@ public class UserMapper {
         return user;
     }
 
-    public static UserResponseDTO toResponseDto(User user) {
+    public UserResponseDTO toUserResponseDto(User user) {
         if (user == null) {
             return null;
         }
@@ -50,18 +53,17 @@ public class UserMapper {
                 .build();
     }
 
-    public static User fromLoginDto(UserLoginDTO dto) {
+    public User fromLoginDto(UserLoginDTO dto) {
         if (dto == null) {
             return null;
         }
-
         User user = new User();
         user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
         return user;
     }
 
-    public static User fromUpdateDto(User user, UserUpdateDTO dto) {
+    public User fromUpdateDto(User user, UserUpdateDTO dto) {
         if (user == null || dto == null) {
             return user;
         }
@@ -89,5 +91,14 @@ public class UserMapper {
         }
 
         return user;
+    }
+
+    public List<UserResponseDTO> toUserResponseDtoList(List<User> users) {
+        if (users == null || users.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return users.stream()
+                .map(this::toUserResponseDto)
+                .collect(Collectors.toList());
     }
 }

@@ -1,6 +1,7 @@
 package com.yildiz.sehrinsesi.service;
 
 import com.yildiz.sehrinsesi.dto.UserResponseDTO;
+import com.yildiz.sehrinsesi.mapper.UserMapper;
 import com.yildiz.sehrinsesi.model.User;
 import com.yildiz.sehrinsesi.repository.UserRepository;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -10,11 +11,14 @@ import java.util.List;
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
-    private PhoneNumberValidationService phoneNumberValidationService;
+    private final UserRepository userRepository;
+    private final PhoneNumberValidationService phoneNumberValidationService;
+    private final UserMapper userMapper;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PhoneNumberValidationService phoneNumberValidationService, UserMapper userMapper) {
         this.userRepository = userRepository;
+        this.phoneNumberValidationService = phoneNumberValidationService;
+        this.userMapper = userMapper;
     }
 
     public UserResponseDTO updateUserPhoneNumber(Long userId, String phoneNumber) {
@@ -28,9 +32,16 @@ public class UserService {
         return userMapper.toUserResponseDto(updatedUser);
     }
 
-    public List<User>findAllUsers() {
-        return userRepository.findAllUsers();
+    public List<UserResponseDTO> findAllUsers() {
+        List<User> users = userRepository.findAll();
+        if (users.isEmpty()) {
+            throw new RuntimeException("No users found in the system.");
+        }
+        return userMapper.toUserResponseDtoList(users);
     }
+
+
+
 
     public List<User> findUserByUsername(String username) {
         return userRepository.findByUsername(username);
