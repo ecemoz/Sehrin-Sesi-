@@ -32,7 +32,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    @ManyToOne
+    @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
     @Column(nullable = false)

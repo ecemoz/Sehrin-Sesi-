@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @Entity
 @Table(name = "adresses")
@@ -32,7 +34,7 @@ public class Address {
     @Column(nullable = false)
     private String zipCode;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column(nullable = false)
+    private List<User> person;
 }
