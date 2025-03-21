@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ComplaintMapper {
+public class ComplaintsMapper {
 
     public Complaints fromCreateDto(ComplaintCreateDTO dto, User user) {
         if (dto == null || user == null) {
