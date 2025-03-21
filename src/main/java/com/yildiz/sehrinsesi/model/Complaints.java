@@ -1,5 +1,6 @@
 package com.yildiz.sehrinsesi.model;
 
+import com.yildiz.sehrinsesi.utils.ComplaintsStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -32,7 +33,7 @@ public class Complaints {
     private LocalDateTime createdAt;
 
     @Enumerated(EnumType.STRING)
-    private ComplaintStatus status;
+    private ComplaintsStatus status;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
