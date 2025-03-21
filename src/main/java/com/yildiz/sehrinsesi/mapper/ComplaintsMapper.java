@@ -6,7 +6,6 @@ import com.yildiz.sehrinsesi.model.Complaints;
 import com.yildiz.sehrinsesi.model.User;
 import com.yildiz.sehrinsesi.utils.ComplaintsStatus;
 import org.springframework.stereotype.Component;
-
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
