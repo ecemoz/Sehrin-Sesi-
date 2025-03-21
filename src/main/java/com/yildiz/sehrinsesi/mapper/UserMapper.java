@@ -25,7 +25,6 @@ public class UserMapper {
         user.setPhoneNumber(dto.getPhoneNumber());
         user.setUserRole(dto.getUserRole());
 
-        // Adres ekleme (street alanı DTO'da tek bir 'address' stringi)
         Address address = new Address();
         address.setStreet(dto.getAddress());
         user.setAddress(address);
