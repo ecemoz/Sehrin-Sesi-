@@ -58,4 +58,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(buildError("Internal server error: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR),
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(ComplaintNotFoundException.class)
+    public ResponseEntity<Object> handleComplaintNotFound(ComplaintNotFoundException ex) {
+        return new ResponseEntity<>(buildError(ex.getMessage(), HttpStatus.NOT_FOUND), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<Object> handleUserNotFound(UserNotFoundException ex) {
+        return new ResponseEntity<>(buildError(ex.getMessage(), HttpStatus.NOT_FOUND), HttpStatus.NOT_FOUND);
+    }
 }
