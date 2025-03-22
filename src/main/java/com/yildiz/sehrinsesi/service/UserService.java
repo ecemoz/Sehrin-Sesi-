@@ -7,7 +7,6 @@ import com.yildiz.sehrinsesi.model.User;
 import com.yildiz.sehrinsesi.repository.UserRepository;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

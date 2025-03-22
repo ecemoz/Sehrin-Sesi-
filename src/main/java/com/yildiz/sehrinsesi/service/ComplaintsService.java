@@ -11,7 +11,6 @@ import com.yildiz.sehrinsesi.repository.ComplaintsRepository;
 import com.yildiz.sehrinsesi.repository.UserRepository;
 import com.yildiz.sehrinsesi.utils.ComplaintsStatus;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
