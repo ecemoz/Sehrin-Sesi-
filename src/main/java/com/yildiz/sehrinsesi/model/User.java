@@ -51,7 +51,7 @@ public class User {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private UserRole userRole = UserRole.ROLE_USER;
+    private UserRole userRole = UserRole.USER;
 
     @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Complaints> complaints;
