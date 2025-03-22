@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ComplaintsRepository extends JpaRepository<Complaints, Long> {
 
-    List<Complaints> findByUserId(int user_id);
+    List<Complaints> findByUserId(Long user_id);
     List<Complaints> findByStatus(ComplaintsStatus status);
 
 }
